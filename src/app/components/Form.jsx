@@ -5,6 +5,7 @@ import io from "socket.io-client";
 const API_URL = "https://smileedu-backend-production.up.railway.app/";
 const socket = io(API_URL);
 import axios from "axios";
+import ImageServer from "./ImageServer";
 
 const Form = () => {
   const [regalos, setRegalos] = useState([]);
@@ -118,15 +119,7 @@ const Form = () => {
                 </option>
               ))}
             </select>
-            <div className="border-2 border-[#AAAAAA] h-52 rounded-lg mt-3 overflow-hidden p-2">
-              <Image
-                width={400}
-                height={400}
-                className="object-contain w-full h-full"
-                src={`/${nombres}.webp`}
-                alt={`${nombres}`}
-              />
-            </div>
+            <ImageServer nombres={nombres} />
             <button className="w-full rounded-[15px] mt-3 p-2 bg-[#4c9eea] text-white text-2xl">
               Registrar
             </button>
@@ -146,14 +139,8 @@ const Form = () => {
             <p>regalo: {informacion.regalo}</p>
           </div>
           <div className=" h-52 rounded-lg mt-3 overflow-hidden p-2">
-            <Image
-              width={400}
-              height={400}
-              className="object-contain w-full h-full"
-              src={`/${informacion.regalo
-                .replace(/\s/g, "")
-                .toLowerCase()}.webp`}
-              alt={`${nombres}`}
+            <ImageServer
+              nombres={`${informacion.regalo.replace(/\s/g, "").toLowerCase()}`}
             />
           </div>
         </div>
