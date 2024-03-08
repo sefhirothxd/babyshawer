@@ -150,7 +150,9 @@ const Form = () => {
               width={400}
               height={400}
               className="object-contain w-full h-full"
-              src={`/${nombres}.webp`}
+              src={`/${informacion.regalo
+                .replace(/\s/g, "")
+                .toLowerCase()}.webp`}
               alt={`${nombres}`}
             />
           </div>
