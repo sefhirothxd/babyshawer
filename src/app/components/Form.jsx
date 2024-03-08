@@ -47,11 +47,11 @@ const Form = () => {
     setInformacion(data);
     console.log(data);
     try {
-      // const res = await axios.post(
-      //   "https://smileedu-backend-production.up.railway.app/api/regalos",
-      //   data
-      // );
-      // socket.emit("actulizarRegalos");
+      const res = await axios.post(
+        "https://smileedu-backend-production.up.railway.app/api/regalos",
+        data
+      );
+      socket.emit("actulizarRegalos");
       // console.log(res);
       //reset form
       e.target.reset();
