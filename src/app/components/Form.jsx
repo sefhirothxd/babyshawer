@@ -76,7 +76,7 @@ const Form = () => {
           <h1 className=" text-[#4c9eea] text-center font-bold text-[45px] uppercase leading-tight">
             baby shawer
             <br />
-            de basco
+            de vasco
           </h1>
           <h2 className="text-[#929292] uppercase font-bold text-center text-[25px]">
             Registro de Regalos
