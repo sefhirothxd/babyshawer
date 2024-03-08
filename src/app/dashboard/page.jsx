@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
-
+import { jsonToCsv } from "../components/Export";
 import DataTable from "react-data-table-component";
+
 const Dashboard = () => {
   const [data, setData] = useState([]);
 
@@ -29,6 +30,17 @@ const Dashboard = () => {
     },
   ];
 
+  const toCSV = (data) => {
+    const file = jsonToCsv(data);
+    const blob = new Blob([file], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "regalos.csv";
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,11 +59,23 @@ const Dashboard = () => {
 
   return (
     <div className="flex justify-center items-center flex-col py-7">
-      <h1 className=" text-[#fff] text-center font-bold text-[45px] uppercase leading-tight mb-5">
-        Tabla de registros de regalos
-      </h1>
       <div className="max-w-6xl w-full ">
-        <DataTable columns={columns} data={data} />
+        <div className="flex justify-end items-center w-full">
+          <button
+            onClick={() => toCSV(data)}
+            className=" 
+        bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
+        "
+          >
+            Exportar
+          </button>
+        </div>
+        <DataTable
+          title="TABLA DE REGISTROS DE REGALOS"
+          columns={columns}
+          data={data}
+          pagination
+        />
       </div>
     </div>
   );
