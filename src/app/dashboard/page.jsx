@@ -71,7 +71,7 @@ const Dashboard = () => {
           </button>
         </div>
         <DataTable
-          title="TABLA DE REGISTROS DE REGALOS"
+          title="VERIFICA TU REGALO"
           columns={columns}
           data={data}
           pagination

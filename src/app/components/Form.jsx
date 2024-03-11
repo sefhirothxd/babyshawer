@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
@@ -20,6 +21,7 @@ const Form = () => {
     }
     const id = e.target.value;
     setNombres(id.replace(/\s/g, "").toLowerCase());
+    console.log(id.replace(/\s/g, "").toLowerCase());
   };
 
   const getRegalos = async () => {
@@ -74,13 +76,17 @@ const Form = () => {
     <>
       {!enviado ? (
         <div className="card w-[400px] rounded-[30px] min-h-[600px] border bg-white py-5">
+          <p className="text-[#929292] text-center font-medium text-base px-2">
+            Si deseas hacernos algún presente, te dejamos una lista con estos
+            modelos referenciales
+          </p>
           <h1 className=" text-[#4c9eea] text-center font-bold text-[45px] uppercase leading-tight">
             baby shawer
             <br />
             de vasco
           </h1>
           <h2 className="text-[#929292] uppercase font-bold text-center text-[25px]">
-            Registro de Regalos
+            Elige tu Regalo
           </h2>
           <form
             className="max-w-[320px] m-auto text-[#AAAAAA] focus:text-[#4c9eea]"
@@ -120,9 +126,16 @@ const Form = () => {
               ))}
             </select>
             <ImageServer nombres={nombres} />
-            <button className="w-full rounded-[15px] mt-3 p-2 bg-[#4c9eea] text-white text-2xl">
-              Registrar
-            </button>
+            <div className="flex justify-center items-center gap-3">
+              <button className="w-full rounded-[15px] mt-3 p-2 bg-[#4c9eea] text-white text-2xl">
+                Registrar
+              </button>
+              <Link href="/dashboard">
+                <button className="w-[150px]  rounded-[15px] mt-3 p-2 bg-[#4c9eea] text-white text-2xl">
+                  Verificar
+                </button>
+              </Link>
+            </div>
           </form>
         </div>
       ) : (
@@ -143,6 +156,11 @@ const Form = () => {
               nombres={`${informacion.regalo.replace(/\s/g, "").toLowerCase()}`}
             />
           </div>
+          <Link className="flex justify-center items-center" href="/dashboard">
+            <button className="w-1/2 mx-auto  rounded-[15px] mt-3 p-2 bg-[#4c9eea] text-white text-2xl">
+              Verificar
+            </button>
+          </Link>
         </div>
       )}
     </>
