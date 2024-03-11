@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 const API_URL = "https://smileedu-backend-production.up.railway.app/";
